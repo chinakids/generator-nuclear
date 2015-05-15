@@ -202,7 +202,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%%= config.app %>/less',
           src: ['*.{less}'],
-          dest: '<%%= config.dist %>/styles',
+          dest: '<%%= config.app %>/styles',
           ext: '.css'
         }]
       },
@@ -211,7 +211,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%%= config.app %>/less',
           src: ['*.{less}'],
-          dest: '<%%= config.dist %>/styles',
+          dest: '<%%= config.app %>/styles',
           ext: '.css'
         }]
       }
