@@ -14,7 +14,7 @@
     "grunt-contrib-imagemin": "^0.8.0",<% if (testFramework === 'jasmine') { %>
     "grunt-contrib-jasmine": "^0.7.0",<% } %>
     "grunt-contrib-jshint": "^0.10.0",<% if (includeLess) { %>
-    "grunt-contrib-less": "~1.0.0",<% } %>
+    "grunt-contrib-less": "1.0.0",<% } %>
     "grunt-contrib-uglify": "^0.5.1",
     "grunt-contrib-watch": "^0.6.1",<% if (testFramework === 'mocha') { %>
     "grunt-mocha": "^0.4.10",<% } %><% if (includeModernizr) { %>
