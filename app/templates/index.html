@@ -9,7 +9,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <% if (includeBootstrap && !includeSass) { %><link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"><% } %>
+    <% if (includeBootstrap) { %><link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"><% } %>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -47,8 +47,8 @@
           <h4>HTML5 Boilerplate</h4>
           <p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p>
 
-          <% if (includeSass) { %><h4>Sass</h4>
-          <p>Sass is a mature, stable, and powerful professional grade CSS extension language.</p>
+          <% if (includeLess) { %><h4>Less</h4>
+          <p>Less is a mature, stable, and powerful professional grade CSS extension language.</p>
           <% } %>
 
           <h4>Bootstrap</h4>
@@ -71,7 +71,7 @@
       <p>You now have</p>
       <ul>
       <li>HTML5 Boilerplate</li>
-      <% if (includeSass) { %><li>Sass</li><% } %>
+      <% if (includeLess) { %><li>Less</li><% } %>
       <% if (includeModernizr) { %><li>Modernizr</li><% } %>
       </ul>
     </div>
