@@ -59,7 +59,7 @@ module.exports = function (grunt) {
         files: ['Gruntfile.js']
       },<% if (includeLess) { %>
       less: {
-        files: ['<%%= config.app %>/styles/{,*/}*.{less}'],
+        files: ['<%%= config.app %>/less/{,*/}*.{less}'],
         tasks: ['less:server', 'autoprefixer']
       },<% } %>
       styles: {
