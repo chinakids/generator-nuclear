@@ -78,7 +78,7 @@ module.exports = yeoman.generators.Base.extend({
       this.includeBootstrap = hasFeature('includeBootstrap');
       this.includeModernizr = hasFeature('includeModernizr');
 
-      this.includeLibLess = answers.libless;
+      //this.includeLibLess = answers.libless;
 
       done();
     }.bind(this));
