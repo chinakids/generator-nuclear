@@ -200,18 +200,18 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%%= config.app %>/styles',
+          cwd: '<%%= config.app %>/less',
           src: ['*.{less}'],
-          dest: '.tmp/styles',
+          dest: '<%%= config.dist %>/styles',
           ext: '.css'
         }]
       },
       server: {
         files: [{
           expand: true,
-          cwd: '<%%= config.app %>/styles',
+          cwd: '<%%= config.app %>/less',
           src: ['*.{less}'],
-          dest: '.tmp/styles',
+          dest: '<%%= config.dist %>/styles',
           ext: '.css'
         }]
       }
@@ -223,16 +223,16 @@ module.exports = function (grunt) {
       options: {
         browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1']<% if (includeLess) { %>,
         map: {
-          prev: '.tmp/styles/'
+          prev: '<%%= config.dist %>/styles/'
         }
         <% } %>
       },
       dist: {
         files: [{
           expand: true,
-          cwd: '.tmp/styles/',
+          cwd: '<%%= config.dist %>/styles/',
           src: '{,*/}*.css',
-          dest: '.tmp/styles/'
+          dest: '<%%= config.dist %>/styles/'
         }]
       }
     },
@@ -244,7 +244,7 @@ module.exports = function (grunt) {
         src: ['<%%= config.app %>/index.html']
       }<% if (includeLess) { %>,
       less: {
-        src: ['<%%= config.app %>/styles/{,*/}*.{less}'],
+        src: ['<%%= config.app %>/less/{,*/}*.{less}'],
         ignorePath: /(\.\.\/){1,2}bower_components\//
       }<% } %>
     },
@@ -390,8 +390,8 @@ module.exports = function (grunt) {
       styles: {
         expand: true,
         dot: true,
-        cwd: '<%%= config.app %>/styles',
-        dest: '.tmp/styles/',
+        cwd: '<%%= config.app %>/less',
+        dest: '<%%= config.dist %>/styles/',
         src: '{,*/}*.css'
       }<% } %>
     },<% if (includeModernizr) { %>

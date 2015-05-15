@@ -129,7 +129,7 @@ module.exports = yeoman.generators.Base.extend({
 
   mainStylesheet: function () {
     var css = 'main.' + (this.includeLess ? 'le' : 'c') + 'ss';
-    this.template(css, 'app/styles/' + css);
+    this.template(css, 'app/'+(this.includeLess ? 'less' : 'style')+'/' + css);
   },
 
   writeIndex: function () {
