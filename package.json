@@ -1,6 +1,6 @@
 {
   "name": "generator-web",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Scaffold out a front-end web",
   "license": "MIT",
   "repository": "chinakids/generator-web",

@@ -128,7 +128,7 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   mainStylesheet: function () {
-    var css = 'main.' + (this.includeless ? 'le' : 'c') + 'ss';
+    var css = 'main.' + (this.includeLess ? 'le' : 'c') + 'ss';
     this.template(css, 'app/styles/' + css);
   },
 
