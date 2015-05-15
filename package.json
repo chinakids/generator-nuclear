@@ -1,0 +1,38 @@
+{
+  "name": "generator-web",
+  "version": "0.0.1",
+  "description": "Scaffold out a front-end web",
+  "license": "MIT",
+  "repository": "chinakids/generator-web",
+  "author": "chinakids",
+  "main": "app/index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator",
+    "web",
+    "app",
+    "front-end",
+    "h5bp",
+    "modernizr",
+    "jquery",
+    "grunt"
+  ],
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "cheerio": "^0.18.0",
+    "yeoman-generator": "^0.18.9",
+    "yosay": "^1.0.2"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "underscore": "^1.6.0"
+  },
+  "peerDependencies": {
+    "generator-mocha": ">=0.1.0"
+  }
+}
