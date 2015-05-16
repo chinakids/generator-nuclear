@@ -115,6 +115,8 @@ module.exports = yeoman.generators.Base.extend({
       bower.dependencies.modernizr = '~2.8.2';
     }
 
+    bower.dependencies['CommonComponents'] = 'https://github.com/chinakids/CommonComponents.git';
+    
     this.copy('bowerrc', '.bowerrc');
     this.write('bower.json', JSON.stringify(bower, null, 2));
   },
