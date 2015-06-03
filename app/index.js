@@ -54,17 +54,6 @@ module.exports = yeoman.generators.Base.extend({
         value: 'includeModernizr',
         checked: true
       }]
-    }, {
-      when: function (answers) {
-        return answers && answers.features &&
-          answers.features.indexOf('includeLess') !== -1;
-      },
-      type: 'confirm',
-      name: 'libless',
-      value: 'includeLibLess',
-      message: 'Would you like to use less? Read up more at \n' +
-        chalk.green('https://github.com/less/less.js#lessjs'),
-      default: false
     }];
 
     this.prompt(prompts, function (answers) {
