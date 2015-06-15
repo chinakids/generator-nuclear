@@ -98,14 +98,12 @@ module.exports = yeoman.generators.Base.extend({
       bower.dependencies[bs] = '~3.2.0';
     } else {
       bower.dependencies.jquery = '~1.11.1';
+      bower.dependencies['normalize.css'] = '~3.0.3';
     }
 
     if (this.includeModernizr) {
       bower.dependencies.modernizr = '~2.8.2';
     }
-
-    bower.dependencies['CommonComponents'] = 'https://github.com/chinakids/CommonComponents.git';
-    bower.dependencies['normalize.css'] = '~3.0.3';
 
     this.copy('bowerrc', '.bowerrc');
     this.write('bower.json', JSON.stringify(bower, null, 2));
