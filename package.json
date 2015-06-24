@@ -1,6 +1,6 @@
 {
   "name": "generator-web",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "一个基于yo官方脚手架改造的空脚手架，目前移除sass支持增加less",
   "license": "MIT",
   "repository": "chinakids/generator-web",
