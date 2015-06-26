@@ -9,3 +9,5 @@ node_js:
 before_script:
   - npm install -g yo
   - npm install -g https://github.com/chinakids/generator-web.git
+script:
+  - yo web
