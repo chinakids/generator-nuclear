@@ -1,5 +1,5 @@
 # generator-web
-基于yeoman官方脚手架改造的脚手架，移除了sass支持，增加sass支持，默认引入normalize
+基于yeoman官方脚手架改造的脚手架，移除了sass支持，增加less支持，默认引入normalize
  
 
 [![npm version](https://badge.fury.io/js/engine.io.svg)](http://badge.fury.io/js/engine.io)
@@ -43,6 +43,7 @@
 - 可选多种工作方式（1.前后端完全分离；2.配合后台的模板编写）
 - 可选多种开发环境（1.PC端的；2.移动端的）
 - 可选多种架构环境（1.基于angularjs的MVC；2.等）
+- 考虑恢复sass支持，提供less&sass双预编译器支持
 
 ###7.更新说明
 ##### V1.0.0(2015-06-23)
