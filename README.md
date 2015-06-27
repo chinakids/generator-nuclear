@@ -3,7 +3,6 @@
  
 
 [![npm version](https://badge.fury.io/js/engine.io.svg)](http://badge.fury.io/js/engine.io)
-[![Build Status](https://travis-ci.org/chinakids/generator-nuclear.svg?branch=master)](https://travis-ci.org/chinakids/generator-nuclear)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 ###1.安装
@@ -18,7 +17,7 @@
 
 - 2、 `npm install -g https://github.com/chinakids/generator-nuclear.git`  (推荐全局安装)
 
-- 3、 `yo web [app's name]` or `yo nuclear [app's name] --coffee` (coffee支持)
+- 3、 `yo nuclear [app's name]` or `yo nuclear [app's name] --coffee` (coffee支持)
 
 
 ###2.备注
