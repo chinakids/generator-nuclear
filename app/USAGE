@@ -7,7 +7,7 @@ Options:
     Less: Use Less
 
 Example:
-    yo web [--coffee]
+    yo nuclear [--coffee]
 
     This will create:
         Gruntfile.js: Configuration for the task runner.
