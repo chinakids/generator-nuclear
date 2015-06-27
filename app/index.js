@@ -7,6 +7,7 @@ module.exports = yeoman.generators.Base.extend({
   constructor: function () {
     yeoman.generators.Base.apply(this, arguments);
 
+
     // setup the test-framework property, Gruntfile template will need this
     this.option('test-framework', {
       desc: 'Test framework to be invoked',
@@ -37,23 +38,33 @@ module.exports = yeoman.generators.Base.extend({
       ));
     }
 
+
+
     var prompts = [{
-      type: 'checkbox',
-      name: 'features',
-      message: 'What more would you like?',
-      choices: [{
-        name: 'Bootstrap',
-        value: 'includeBootstrap',
-        checked: false
+        name: 'name',
+        message: 'What would like name your project package?',
+        default: 'myproject'
       },{
-        name: 'Less',
-        value: 'includeLess',
-        checked: true
+        name: 'description',
+        message: 'Describe your package in one-line:',
+        default: 'This is a nuclear package!'
       },{
-        name: 'Modernizr',
-        value: 'includeModernizr',
-        checked: true
-      }]
+        type: 'checkbox',
+        name: 'features',
+        message: 'What more would you like?',
+        choices: [{
+          name: 'Bootstrap',
+          value: 'includeBootstrap',
+          checked: false
+        },{
+          name: 'Less',
+          value: 'includeLess',
+          checked: true
+        },{
+          name: 'Modernizr',
+          value: 'includeModernizr',
+          checked: true
+        }]
     }];
 
     this.prompt(prompts, function (answers) {
@@ -62,6 +73,8 @@ module.exports = yeoman.generators.Base.extend({
       function hasFeature(feat) {
         return features && features.indexOf(feat) !== -1;
       }
+      this.appname = this._.slugify(answers.name);
+      this.description = answers.description;
 
       this.includeLess = hasFeature('includeLess');
       this.includeBootstrap = hasFeature('includeBootstrap');
@@ -89,6 +102,8 @@ module.exports = yeoman.generators.Base.extend({
   bower: function () {
     var bower = {
       name: this._.slugify(this.appname),
+
+      description: this.description,
       private: true,
       dependencies: {}
     };
