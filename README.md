@@ -47,7 +47,7 @@
 ###7.更新说明
 ##### V1.1.0(2015-06-23)
 - 项目更名
-  generator-web  ->   generator-unclear
+  generator-web  ->   generator-nuclear
 
 ##### V1.0.0(2015-06-23)
 - 第一版可用版本发布
