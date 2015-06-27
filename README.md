@@ -1,9 +1,9 @@
-# generator-web
+# generator-nuclear
 基于yeoman官方脚手架改造的脚手架，移除了sass支持，增加less支持，默认引入normalize
  
 
 [![npm version](https://badge.fury.io/js/engine.io.svg)](http://badge.fury.io/js/engine.io)
-[![Build Status](https://travis-ci.org/chinakids/generator-web.svg?branch=master)](https://travis-ci.org/chinakids/generator-web)
+[![Build Status](https://travis-ci.org/chinakids/generator-nuclear.svg?branch=master)](https://travis-ci.org/chinakids/generator-nuclear)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 ###1.安装
@@ -16,9 +16,9 @@
 #####1.2 安装
 - 1、 `npm install -g yo`
 
-- 2、 `npm install -g https://github.com/chinakids/generator-web.git`  (推荐全局安装)
+- 2、 `npm install -g https://github.com/chinakids/generator-nuclear.git`  (推荐全局安装)
 
-- 3、 `yo web` or `yo web --coffee` (coffee支持)
+- 3、 `yo web [app's name]` or `yo nuclear [app's name] --coffee` (coffee支持)
 
 
 ###2.备注
@@ -46,5 +46,9 @@
 - 考虑恢复sass支持，提供less&sass双预编译器支持
 
 ###7.更新说明
+##### V1.1.0(2015-06-23)
+- 项目更名
+  generator-web  ->   generator-unclear
+
 ##### V1.0.0(2015-06-23)
 - 第一版可用版本发布
