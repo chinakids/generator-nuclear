@@ -1,6 +1,6 @@
 {
   "name": "<%= _.slugify(appname) %>",
-  "description": "<%= answers.description %>",
+  "description": "<%= this.description %>",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-autoprefixer": "^1.0.0",
