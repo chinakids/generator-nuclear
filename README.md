@@ -15,7 +15,7 @@
 #####1.2 安装
 - 1、 `npm install -g yo`
 
-- 2、 `npm install -g https://github.com/chinakids/generator-nuclear.git`  (推荐全局安装)
+- 2、 `npm install -g generator-nuclear`  (推荐全局安装)
 
 - 3、 `yo nuclear [app's name]` or `yo nuclear [app's name] --coffee` (coffee支持)
 
@@ -46,6 +46,9 @@
 - 考虑恢复sass支持，提供less&sass双预编译器支持
 
 ###7.更新说明
+##### V1.1.0(2015-06-28)
+- 发布至NPM,可直接使用名称安装
+
 ##### V1.1.0(2015-06-23)
 - 项目更名
   generator-web  ->   generator-nuclear
