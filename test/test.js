@@ -5,7 +5,7 @@ var helpers = require('yeoman-generator').test;
 var assert = require('yeoman-generator').assert;
 var _ = require('underscore');
 
-describe('Webapp generator', function () {
+describe('Nuclear generator', function () {
   // not testing the actual run of generators yet
   it('the generator can be required without throwing', function () {
     this.app = require('../app');
