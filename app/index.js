@@ -3,6 +3,7 @@ var join = require('path').join;
 var yeoman = require('yeoman-generator');
 var osLocale = require('os-locale');
 var chalk = require('chalk');
+var fs = require('fs');
 
 module.exports = yeoman.generators.Base.extend({
   constructor: function () {
@@ -27,9 +28,9 @@ module.exports = yeoman.generators.Base.extend({
     //choose os locale
     osLocale(function (err, locale) {
       if(locale == 'zh_CN'){
-        this.locale = require('language/'+locale+'.json');
+        this.locale = JSON.parse(fs.readFileSync('language/'+locale+'.json'));
       }else{
-        this.locale = require('language/en_US.json');
+        this.locale = JSON.parse(fs.readFileSync('language/en_US.json'));
       }
       //=> 'en_US'
     });
