@@ -35,8 +35,11 @@ module.exports = yeoman.generators.Base.extend({
     //choose os locale
     osLocale(function (err, locale) {
       //=> 'en_US'
-      if(locale == 'zh_CN' || locale == 'zh_Hans' || locale == 'zh_Hant' || locale == 'zh_HK' || locale == 'zh_MO'){
+      //ps.最终成型前只支持中文（简体）、中文（繁体）、英文（美式）
+      if(locale == 'zh_CN' || locale == 'zh_Hans'){
         _this.locale = JSON.parse(fs.readFileSync(join(_this.sourceRoot(), '../language/'+locale+'.json')));
+      }else if(locale == 'zh_Hant' || locale == 'zh_HK' || locale == 'zh_MO'){
+        _this.locale = JSON.parse(fs.readFileSync(join(_this.sourceRoot(), '../language/zh_Hans.json')));
       }else{
         _this.locale = JSON.parse(fs.readFileSync(join(_this.sourceRoot(), '../language/en_US.json')));
       }
