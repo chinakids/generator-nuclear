@@ -1,6 +1,6 @@
 {
-  welcome         : '这个脚手架包含基础HTML5模板,jQuery和Grunt脚本用来构建应用程序',
-  name            : '你希望这个项目的名字是?',
-  description     : '用一句话来描述你的这个项目:',
-  features        : '你还希望引入什么?'
+  "welcome"         : "这个脚手架包含基础HTML5模板,jQuery和Grunt脚本用来构建应用程序",
+  "name"            : "你希望这个项目的名字是?",
+  "description"     : "用一句话来描述你的这个项目:",
+  "features"        : "你还希望引入什么?"
 }
