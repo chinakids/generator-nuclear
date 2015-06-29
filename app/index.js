@@ -35,7 +35,7 @@ module.exports = yeoman.generators.Base.extend({
     //choose os locale
     osLocale(function (err, locale) {
       //=> 'en_US'
-      if(locale == 'zh_CN'){
+      if(locale == 'zh_CN' || locale == 'zh_Hans' || locale == 'zh_Hant' || locale == 'zh_HK' || locale == 'zh_MO'){
         _this.locale = JSON.parse(fs.readFileSync('./language/'+locale+'.json'));
       }else{
         _this.locale = JSON.parse(fs.readFileSync('./language/en_US.json'));
