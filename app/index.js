@@ -1,6 +1,7 @@
 'use strict';
 var join = require('path').join;
 var yeoman = require('yeoman-generator');
+var osLocale = require('os-locale');
 var chalk = require('chalk');
 
 module.exports = yeoman.generators.Base.extend({
@@ -23,6 +24,16 @@ module.exports = yeoman.generators.Base.extend({
     });
     this.coffee = this.options.coffee;
 
+    //choose os locale
+    osLocale(function (err, locale) {
+      if(locale == 'zh_CN'){
+        this.locale = require('../'+locale+'.json');
+      }else{
+        this.locale = require('../en_US.json');
+      }
+      //=> 'en_US'
+    });
+
     this.pkg = require('../package.json');
   },
 
@@ -32,29 +43,26 @@ module.exports = yeoman.generators.Base.extend({
     // welcome message
     if (!this.options['skip-welcome-message']) {
       this.log(require('yosay')());
-      this.log(chalk.magenta(
-        'Out of the box I include HTML5 Boilerplate, jQuery, and a ' +
-        'Gruntfile.js to build your app.'
-      ));
+      this.log(chalk.magenta(this.locale['welcome']));
     }
 
 
 
     var prompts = [{
         name: 'name',
-        message: 'What would like name your project package?',
+        message: this.locale['name'],
         default: 'myproject'
       },{
         name: 'description',
-        message: 'Describe your package in one-line:',
+        message: this.locale['description'],
         default: 'This is a nuclear package!'
       },{
         type: 'checkbox',
         name: 'features',
-        message: 'What more would you like?',
+        message: this.locale['features'],
         choices: [{
           name: 'Bootstrap',
-          value: 'includeBootstrap',
+          value: 'includeLess',
           checked: false
         },{
           name: 'Less',

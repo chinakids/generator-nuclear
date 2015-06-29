@@ -1,0 +1,6 @@
+{
+  welcome         : 'Out of the box I include HTML5 Boilerplate, jQuery, and a Gruntfile.js to build your app.',
+  name            : 'What would like name your project package?',
+  description     : 'Describe your package in one-line:',
+  features        : 'What more would you like?'
+}
