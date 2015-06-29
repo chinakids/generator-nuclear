@@ -25,75 +25,72 @@ module.exports = yeoman.generators.Base.extend({
     });
     this.coffee = this.options.coffee;
 
-    //choose os locale
-    osLocale(function (err, locale) {
-      if(locale == 'zh_CN'){
-        this.locale = JSON.parse(fs.readFileSync('./language/'+locale+'.json'));
-        this.log(this.locale)
-      }else{
-        this.locale = JSON.parse(fs.readFileSync('./language/en_US.json'));
-      }
-      //=> 'en_US'
-    });
-
     this.pkg = require('../package.json');
   },
 
   askFor: function () {
-    var done = this.async();
+    var done = this.async(),
+        _this = this;
 
-    // welcome message
-    if (!this.options['skip-welcome-message']) {
-      this.log(require('yosay')());
-      this.log(chalk.magenta(this.locale.welcome));
-    }
-
-
-
-    var prompts = [{
-        name: 'name',
-        message: this.locale.name,
-        default: 'myproject'
-      },{
-        name: 'description',
-        message: this.locale.description,
-        default: 'This is a nuclear package!'
-      },{
-        type: 'checkbox',
-        name: 'features',
-        message: this.locale.features,
-        choices: [{
-          name: 'Bootstrap',
-          value: 'includeLess',
-          checked: false
-        },{
-          name: 'Less',
-          value: 'includeLess',
-          checked: true
-        },{
-          name: 'Modernizr',
-          value: 'includeModernizr',
-          checked: true
-        }]
-    }];
-
-    this.prompt(prompts, function (answers) {
-      var features = answers.features;
-
-      function hasFeature(feat) {
-        return features && features.indexOf(feat) !== -1;
+    //choose os locale
+    osLocale(function (err, locale) {
+      //=> 'en_US'
+      if(locale == 'zh_CN'){
+        _this.locale = JSON.parse(fs.readFileSync('./language/'+locale+'.json'));
+      }else{
+        _this.locale = JSON.parse(fs.readFileSync('./language/en_US.json'));
       }
-      this.appname = this._.slugify(answers.name);
-      this.description = answers.description;
+      // welcome message
+      if (!_this.options['skip-welcome-message']) {
+        _this.log(require('yosay')());
+        _this.log(chalk.magenta(_this.locale.welcome));
+      }
 
-      this.includeLess = hasFeature('includeLess');
-      this.includeBootstrap = hasFeature('includeBootstrap');
-      this.includeModernizr = hasFeature('includeModernizr');
+      var prompts = [{
+          name: 'name',
+          message: _this.locale.name,
+          default: 'myproject'
+        },{
+          name: 'description',
+          message: _this.locale.description,
+          default: 'This is a nuclear package!'
+        },{
+          type: 'checkbox',
+          name: 'features',
+          message: _this.locale.features,
+          choices: [{
+            name: 'Bootstrap',
+            value: 'includeLess',
+            checked: false
+          },{
+            name: 'Less',
+            value: 'includeLess',
+            checked: true
+          },{
+            name: 'Modernizr',
+            value: 'includeModernizr',
+            checked: true
+          }]
+      }];
 
-      //this.includeLibLess = answers.libless;
+      _this.prompt(prompts, function (answers) {
+        var features = answers.features;
 
-      done();
-    }.bind(this));
+        function hasFeature(feat) {
+          return features && features.indexOf(feat) !== -1;
+        }
+        _this.appname = this._.slugify(answers.name);
+        _this.description = answers.description;
+
+        _this.includeLess = hasFeature('includeLess');
+        _this.includeBootstrap = hasFeature('includeBootstrap');
+        _this.includeModernizr = hasFeature('includeModernizr');
+
+        //this.includeLibLess = answers.libless;
+
+        done();
+      }.bind(_this));
+    });
   },
 
   gruntfile: function () {
