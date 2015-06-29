@@ -36,9 +36,9 @@ module.exports = yeoman.generators.Base.extend({
     osLocale(function (err, locale) {
       //=> 'en_US'
       if(locale == 'zh_CN' || locale == 'zh_Hans' || locale == 'zh_Hant' || locale == 'zh_HK' || locale == 'zh_MO'){
-        _this.locale = JSON.parse(fs.readFileSync('./language/'+locale+'.json'));
+        _this.locale = JSON.parse(fs.readFileSync(join(_this.sourceRoot(), '../language/'+locale+'.json')));
       }else{
-        _this.locale = JSON.parse(fs.readFileSync('./language/en_US.json'));
+        _this.locale = JSON.parse(fs.readFileSync(join(_this.sourceRoot(), '../language/en_US.json')));
       }
       // welcome message
       if (!_this.options['skip-welcome-message']) {
