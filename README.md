@@ -1,4 +1,4 @@
-# generator-nuclear
+# Generator-nuclear
 这是一个全能的脚手架，比官方更强大！装一个就够了~
 
 多语言支持，移除了sass支持，增加less支持，默认引入normalize

@@ -1,7 +1,7 @@
 {
   "name": "generator-nuclear",
   "version": "1.2.0",
-  "description": "一个基于yo官方脚手架改造的空脚手架，目前移除sass支持增加less",
+  "description": "这是一个全能的脚手架，比官方更强大！装一个就够了~",
   "license": "MIT",
   "repository": "chinakids/generator-nuclear",
   "author": "chinakids",
