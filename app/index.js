@@ -29,6 +29,7 @@ module.exports = yeoman.generators.Base.extend({
     osLocale(function (err, locale) {
       if(locale == 'zh_CN'){
         this.locale = JSON.parse(fs.readFileSync('./language/'+locale+'.json'));
+        this.log(this.locale)
       }else{
         this.locale = JSON.parse(fs.readFileSync('./language/en_US.json'));
       }
@@ -44,23 +45,23 @@ module.exports = yeoman.generators.Base.extend({
     // welcome message
     if (!this.options['skip-welcome-message']) {
       this.log(require('yosay')());
-      this.log(chalk.magenta(this.locale['welcome']));
+      this.log(chalk.magenta(this.locale.welcome));
     }
 
 
 
     var prompts = [{
         name: 'name',
-        message: this.locale['name'],
+        message: this.locale.name,
         default: 'myproject'
       },{
         name: 'description',
-        message: this.locale['description'],
+        message: this.locale.description,
         default: 'This is a nuclear package!'
       },{
         type: 'checkbox',
         name: 'features',
-        message: this.locale['features'],
+        message: this.locale.features,
         choices: [{
           name: 'Bootstrap',
           value: 'includeLess',
