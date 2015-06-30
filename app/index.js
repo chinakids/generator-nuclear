@@ -49,17 +49,17 @@ module.exports = yeoman.generators.Base.extend({
       // welcome message
       if (!_this.options['skip-welcome-message']) {
         _this.log(require('yosay')());
-        _this.log(chalk.magenta(_this.locale.welcome));
+        _this.log(chalk.magenta(_this.locale["welcome"]));
       }
 
       var prompts = [
         {
           name: 'name',
-          message: _this.locale.name,
+          message: _this.locale["name"],
           default: 'myproject'
         },{
           name: 'description',
-          message: _this.locale.description,
+          message: _this.locale["description"],
           default: 'This is a nuclear package!'
         },{
           type: 'rawlist',
@@ -78,44 +78,44 @@ module.exports = yeoman.generators.Base.extend({
         },{
           type: 'checkbox',
           name: 'features',
-          message: _this.locale.features.message,
+          message: _this.locale["features"]["message"],
           choices: [{
-            name: 'Bootstrap',
+            name: _this.locale["features"]["choices"]["bootstrap"],
             value: 'includeBootstrap',
             checked: false
           },{
-            name: 'Jquery',
+            name: _this.locale["features"]["choices"]["jquery"],
             value: 'includeJquery',
             checked: true
           },{
-            name: 'Modernizr',
+            name: _this.locale["features"]["choices"]["modernizr"],
             value: 'includeModernizr',
             checked: true
           }]
         },{
           type: 'rawlist',
           name: 'devmodel',
-          message: '请选择此项目的工作方式',
+          message: _this.locale["devmodel"]["message"],
           choices: [{
-            name: '模板模式',
+            name: _this.locale["devmodel"]["choices"]["templates"],
             value: 'templates'
           },{
-            name: '全栈模式（Restful）',
+            name: _this.locale["devmodel"]["choices"]["fullstack"],
             value: 'fullstack'
           }]
         },{
           type: 'rawlist',
           name: 'jsmodel',
-          message: '请选择此项目的JS模式',
+          message: _this.locale["jsmodel"]["message"],
           choices: [
           {
-            name: '常规',
+            name: _this.locale["jsmodel"]["choices"]["no"],
             value: 'useno'
           },{
-            name: 'AMD',
+            name: _this.locale["jsmodel"]["choices"]["amd"],
             value: 'useamd'
           },{
-            name: 'CMD',
+            name: _this.locale["jsmodel"]["choices"]["cmd"],
             value: 'usecmd'
           }]
         }

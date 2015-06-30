@@ -14,7 +14,7 @@
     "message"       : "你还希望引入什么?",
     "choices"       : {
       "bootstrap"   : "Bootstrap(引入bs则会自动引入jq)",
-      "Jquery"      : "JQuery(引入bs则会自动引入jq)",
+      "jquery"      : "JQuery(引入bs则会自动引入jq)",
       "modernizr"   : "Modernizr"
     }
   },
