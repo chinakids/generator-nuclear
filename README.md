@@ -11,15 +11,21 @@
 
 ##### 1.1 环境配置
 
--  *、基础环境：node、git、yeoman、grunt-cli
+-  *、基础环境：node、git、yeoman、grunt-cli、bower
 
 
 ##### 1.2 安装
 - 1、 `npm install -g yo`
 
-- 2、 `npm install -g generator-nuclear`  (推荐全局安装)
+- 2、 `npm install -g generator-nuclear`
 
 - 3、 `yo nuclear [app's name]` or `yo nuclear [app's name] --coffee` (coffee支持)
+
+- 4、 根具提示配置你的项目
+
+- 5、 `npm install`
+
+- 6、 `grunt server`
 
 
 ### 2.备注
