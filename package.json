@@ -27,7 +27,8 @@
     "cheerio": "^0.18.0",
     "os-locale": "^1.0.1",
     "yeoman-generator": "^0.18.9",
-    "yosay": "^1.0.2"
+    "yosay": "^1.0.2",
+    "underscore": "^1.6.0"
   },
   "devDependencies": {
     "mocha": "*",

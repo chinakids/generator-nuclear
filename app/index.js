@@ -1,9 +1,11 @@
 'use strict';
-var join = require('path').join;
-var yeoman = require('yeoman-generator');
-var osLocale = require('os-locale');
-var chalk = require('chalk');
-var fs = require('fs');
+
+var yeoman = require('yeoman-generator'),
+    osLocale = require('os-locale'),
+    join = require('path').join,
+    _ = require('underscore'),
+    chalk = require('chalk'),
+    fs = require('fs');
 
 module.exports = yeoman.generators.Base.extend({
   constructor: function () {
@@ -30,18 +32,19 @@ module.exports = yeoman.generators.Base.extend({
 
   askFor: function () {
     var done = this.async(),
-        _this = this;
+        _this = this,
+        baseLocale = JSON.parse(fs.readFileSync(join(_this.sourceRoot(), '../language/zh_CN.json')));
 
     //choose os locale
     osLocale(function (err, locale) {
       //=> 'en_US'
       //ps.最终成型前只支持中文（简体）、中文（繁体）、英文（美式）
       if(locale == 'zh_CN' || locale == 'zh_Hans'){
-        _this.locale = JSON.parse(fs.readFileSync(join(_this.sourceRoot(), '../language/'+locale+'.json')));
+        _this.locale = _.extend(baseLocale,JSON.parse(fs.readFileSync(join(_this.sourceRoot(), '../language/'+locale+'.json'))));
       }else if(locale == 'zh_Hant' || locale == 'zh_HK' || locale == 'zh_MO'){
-        _this.locale = JSON.parse(fs.readFileSync(join(_this.sourceRoot(), '../language/zh_Hans.json')));
+        _this.locale = _.extend(baseLocale,JSON.parse(fs.readFileSync(join(_this.sourceRoot(), '../language/zh_Hant.json'))));
       }else{
-        _this.locale = JSON.parse(fs.readFileSync(join(_this.sourceRoot(), '../language/en_US.json')));
+        _this.locale = _.extend(baseLocale,JSON.parse(fs.readFileSync(join(_this.sourceRoot(), '../language/en_US.json'))));
       }
       // welcome message
       if (!_this.options['skip-welcome-message']) {
@@ -49,7 +52,8 @@ module.exports = yeoman.generators.Base.extend({
         _this.log(chalk.magenta(_this.locale.welcome));
       }
 
-      var prompts = [{
+      var prompts = [
+        {
           name: 'name',
           message: _this.locale.name,
           default: 'myproject'
@@ -58,23 +62,64 @@ module.exports = yeoman.generators.Base.extend({
           message: _this.locale.description,
           default: 'This is a nuclear package!'
         },{
+          type: 'rawlist',
+          name: 'cssmodel',
+          message: '请选择此项目CSS预编译器',
+          choices: [{
+            name: 'LESS',
+            value: 'includeLess'
+          },{
+            name: 'SASS',
+            value: 'includeSass'
+          },{
+            name: '不使用预编译器',
+            value: 'includeCss'
+          }]
+        },{
           type: 'checkbox',
           name: 'features',
-          message: _this.locale.features,
+          message: _this.locale.features.message,
           choices: [{
             name: 'Bootstrap',
-            value: 'includeLess',
+            value: 'includeBootstrap',
             checked: false
           },{
-            name: 'Less',
-            value: 'includeLess',
+            name: 'Jquery',
+            value: 'includeJquery',
             checked: true
           },{
             name: 'Modernizr',
             value: 'includeModernizr',
             checked: true
           }]
-      }];
+        },{
+          type: 'rawlist',
+          name: 'devmodel',
+          message: '请选择此项目的工作方式',
+          choices: [{
+            name: '模板模式',
+            value: 'templates'
+          },{
+            name: '全栈模式（Restful）',
+            value: 'fullstack'
+          }]
+        },{
+          type: 'rawlist',
+          name: 'jsmodel',
+          message: '请选择此项目的JS模式',
+          choices: [
+          {
+            name: '常规',
+            value: 'useno'
+          },{
+            name: 'AMD',
+            value: 'useamd'
+          },{
+            name: 'CMD',
+            value: 'usecmd'
+          }]
+        }
+      ];
 
       _this.prompt(prompts, function (answers) {
         var features = answers.features;
@@ -122,7 +167,9 @@ module.exports = yeoman.generators.Base.extend({
       var bs = 'bootstrap';
       bower.dependencies[bs] = '~3.2.0';
     } else {
-      bower.dependencies.jquery = '~1.11.1';
+      if (this.includeJquery){
+        bower.dependencies.jquery = '~1.11.1';
+      }
       bower.dependencies['normalize.css'] = '~3.0.3';
     }
 
