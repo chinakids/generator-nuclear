@@ -1,2 +1,2 @@
 # jshint devel:true
-console.log "'Allo from CoffeeScript!"
+console.log "Hello Word! from CoffeeScript!"
