@@ -377,7 +377,7 @@ module.exports = function (grunt) {
       default: {
         options: {
           //edit templatesConfig.json
-          regex: templatesConfig
+          regex: this.templatesConfig
         },
         files: [{
           expand: true,
