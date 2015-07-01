@@ -1,6 +1,6 @@
 {
-  "=\"lib/"      : "=\"_LIB_/",
-  "=\"scripts/"  : "=\"_JS_/",
-  "=\"styles/"   : "=\"_CSS_/",
-  "=\"images/"   : "=\"_IMG_/"
+  "=\"bower_components/"      : "=\"_LIB_/",
+  "=\"scripts/"               : "=\"_JS_/",
+  "=\"styles/"                : "=\"_CSS_/",
+  "=\"images/"                : "=\"_IMG_/"
 }
