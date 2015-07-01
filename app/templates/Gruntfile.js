@@ -497,7 +497,6 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
-      'clean:server',
       'wiredep',
       'concurrent:server',
       'autoprefixer',
@@ -514,7 +513,6 @@ module.exports = function (grunt) {
   grunt.registerTask('test', function (target) {
     if (target !== 'watch') {
       grunt.task.run([
-        'clean:server',
         'concurrent:test',
         'autoprefixer'
       ]);
