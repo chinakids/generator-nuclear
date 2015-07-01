@@ -61,6 +61,10 @@ module.exports = function (grunt) {
       less: {
         files: ['<%%= config.app %>/less/{,*/}*.{less}'],
         tasks: ['less:server', 'autoprefixer']
+      },<% } %><% if (includeSass) { %>
+      sass: {
+        files: ['<%%= config.app %>/scss/{,*/}*.{scss,sass}'],
+        tasks: ['sass:server', 'autoprefixer']
       },<% } %>
       styles: {
         files: ['<%%= config.app %>/styles/{,*/}*.css'],
@@ -195,6 +199,7 @@ module.exports = function (grunt) {
     less: {
       options: {
         compress: true,
+        sourceMap: true,
         yuicompress: false
       },
       dist: {
@@ -203,7 +208,7 @@ module.exports = function (grunt) {
           cwd: '<%%= config.app %>/less',
           src: ['*.{less}'],
           dest: '<%%= config.app %>/styles',
-          ext: '.css'
+          ext: '.min.css'
         }]
       },
       server: {
@@ -212,20 +217,44 @@ module.exports = function (grunt) {
           cwd: '<%%= config.app %>/less',
           src: ['*.{less}'],
           dest: '<%%= config.app %>/styles',
-          ext: '.css'
+          ext: '.min.css'
         }]
       }
     },
-    <% } %>
+    <% } %><% if (includeSass) { %>
+
+    // Compiles Sass to CSS and generates necessary files if requested
+    sass: {
+      options: {<% if (includeLibSass) { %>
+        sourceMap: true,
+        includePaths: ['bower_components']
+        <% } else { %>
+        loadPath: 'bower_components'
+      <% } %>},
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '<%%= config.app %>/scss',
+          src: ['*.{scss,sass}'],
+          dest: '<%%= config.app %>/styles',
+          ext: '.min.css'
+        }]
+      },
+      server: {
+        files: [{
+          expand: true,
+          cwd: '<%%= config.app %>/scss',
+          src: ['*.{scss,sass}'],
+          dest: '<%%= config.app %>/styles',
+          ext: '.min.css'
+        }]
+      }
+    },<% } %>
 
     // Add vendor prefixed styles
     autoprefixer: {
       options: {
-        browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1']<% if (includeLess) { %>,
-        map: {
-          prev: '<%%= config.dist %>/styles/'
-        }
-        <% } %>
+        browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1']
       },
       dist: {
         files: [{
@@ -241,10 +270,12 @@ module.exports = function (grunt) {
     wiredep: {
       app: {
         ignorePath: /^<%= config.app %>\/|\.\.\//,
-        src: ['<%%= config.app %>/index.html']
-      }<% if (includeLess) { %>,
-      less: {
-        src: ['<%%= config.app %>/less/{,*/}*.{less}'],
+        src: ['<%%= config.app %>/index.html']<% if (includeBootstrap) { %>,<% if (includeSass) { %>
+        exclude: ['bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js']<% } else { %>
+        exclude: ['bower_components/bootstrap/dist/js/bootstrap.js']<% } } %>
+      }<% if (includeSass) { %>,
+      sass: {
+        src: ['<%%= config.app %>/styles/{,*/}*.{scss,sass}'],
         ignorePath: /(\.\.\/){1,2}bower_components\//
       }<% } %>
     },
@@ -386,14 +417,7 @@ module.exports = function (grunt) {
             } %>',
           dest: '<%%= config.dist %>'
         }<% } %>]
-      }<% if (!includeLess) { %>,
-      styles: {
-        expand: true,
-        dot: true,
-        cwd: '<%%= config.app %>/less',
-        dest: '<%%= config.dist %>/styles/',
-        src: '{,*/}*.css'
-      }<% } %>
+      }
     },<% if (includeModernizr) { %>
 
     // Generates a custom Modernizr build that includes only the tests you
@@ -416,18 +440,17 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up build process
     concurrent: {
       server: [<% if (coffee) {  %>
-        'coffee:dist'<% } %><% if (coffee && includeLess) {  %>,<% } %><% if (includeLess) { %>
-        'less:server'<% } else { %>
-        'copy:styles'<% } %>
+        'coffee:dist'<% } %><% if (includeLess) { %>
+        ,'less:server'<% } %><% if (includeSass) { %>
+        ,'sass:server'<% } %>
       ],
       test: [<% if (coffee) { %>
-        'coffee',<% } %><% if (coffee && !includeLess) {  %>,<% } %><% if (!includeLess) { %>
-        'copy:styles'<% } %>
+        'coffee'<% } %>
       ],
       dist: [<% if (coffee) { %>
         'coffee',<% } %><% if (includeLess) { %>
-        'less',<% } else { %>
-        'copy:styles',<% } %>
+        'less',<% } %><% if (includeSass) { %>
+        'sass',<% } %>
         'imagemin',
         'svgmin'
       ]

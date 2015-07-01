@@ -116,10 +116,13 @@ module.exports = yeoman.generators.Base.extend({
         _this.description = answers.description;
 
         _this.includeLess = hasFeature('includeLess');
+        _this.includeSass = hasFeature('includeSass');
+        _this.includeCss = hasFeature('includeCss');
         _this.includeBootstrap = hasFeature('includeBootstrap');
         _this.includeModernizr = hasFeature('includeModernizr');
 
-        //this.includeLibLess = answers.libless;
+        _this.includeLibSass = answers.libsass;
+        _this.includeRubySass = !answers.libsass;
 
         done();
       }.bind(_this));
@@ -148,12 +151,13 @@ module.exports = yeoman.generators.Base.extend({
       dependencies: {}
     };
 
-    if (this.includeBootstrap) {
-      var bs = 'bootstrap';
-      bower.dependencies[bs] = '~3.2.0';
+    if (this.includeBootstrap && !this.includeSass) {
+      bower.dependencies['bootstrap'] = '~3.2.0';
+    }else if(this.includeBootstrap && this.includeSass){
+      bower.dependencies['bootstrap-sass-official'] = '~3.2.0';
     } else {
       if (this.includeJquery){
-        bower.dependencies.jquery = '~1.11.1';
+        bower.dependencies['jquery'] = '~1.11.1';
       }
       bower.dependencies['normalize.css'] = '~3.0.3';
     }
@@ -175,8 +179,13 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   mainStylesheet: function () {
-    var css = 'main.' + (this.includeLess ? 'le' : 'c') + 'ss';
-    this.template(css, 'app/'+(this.includeLess ? 'less' : 'style')+'/' + css);
+    if(this.includeLess){
+      this.template(css, 'app/less/main.less');
+    }else if(this.includeSass){
+      this.template(css, 'app/scss/main.scss');
+    }else{
+      this.template(css, 'app/style/main.css');
+    }
   },
 
   writeIndex: function () {
@@ -186,7 +195,7 @@ module.exports = yeoman.generators.Base.extend({
     );
 
     // wire Bootstrap plugins
-    if (this.includeBootstrap && !this.includeLess) {
+    if (this.includeBootstrap && !this.includeSass) {
       var bs = 'bower_components/bootstrap/js/';
 
       this.indexFile = this.appendFiles({

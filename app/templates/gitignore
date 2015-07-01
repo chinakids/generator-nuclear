@@ -1,5 +1,5 @@
 node_modules
 dist
-.tmp<% if (includeLess) { %>
-.less-cache<% } %>
+.tmp<% if (includeSass) { %>
+.sass-cache<% } %>
 bower_components
