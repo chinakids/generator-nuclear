@@ -49,74 +49,59 @@ module.exports = yeoman.generators.Base.extend({
       // welcome message
       if (!_this.options['skip-welcome-message']) {
         _this.log(require('yosay')());
-        _this.log(chalk.magenta(_this.locale["welcome"]));
+        _this.log(chalk.magenta(_this.locale['welcome']));
       }
 
       var prompts = [
         {
           name: 'name',
-          message: _this.locale["name"],
+          message: _this.locale['name'],
           default: 'myproject'
         },{
           name: 'description',
-          message: _this.locale["description"],
+          message: _this.locale['description'],
           default: 'This is a nuclear package!'
         },{
           type: 'rawlist',
           name: 'cssmodel',
-          message: '请选择此项目CSS预编译器',
+          message: _this.locale['cssmodel']['message'],
           choices: [{
-            name: 'LESS',
+            name: _this.locale['cssmodel']['choices']['less'],
             value: 'includeLess'
           },{
-            name: 'SASS',
+            name: _this.locale['cssmodel']['choices']['sass'],
             value: 'includeSass'
           },{
-            name: '不使用预编译器',
+            name: _this.locale['cssmodel']['choices']['css'],
             value: 'includeCss'
           }]
         },{
           type: 'checkbox',
           name: 'features',
-          message: _this.locale["features"]["message"],
+          message: _this.locale['features']['message'],
           choices: [{
-            name: _this.locale["features"]["choices"]["bootstrap"],
+            name: _this.locale['features']['choices']['bootstrap'],
             value: 'includeBootstrap',
             checked: false
           },{
-            name: _this.locale["features"]["choices"]["jquery"],
+            name: _this.locale['features']['choices']['jquery'],
             value: 'includeJquery',
             checked: true
           },{
-            name: _this.locale["features"]["choices"]["modernizr"],
+            name: _this.locale['features']['choices']['modernizr'],
             value: 'includeModernizr',
             checked: true
           }]
         },{
           type: 'rawlist',
           name: 'devmodel',
-          message: _this.locale["devmodel"]["message"],
+          message: _this.locale['devmodel']['message'],
           choices: [{
-            name: _this.locale["devmodel"]["choices"]["templates"],
+            name: _this.locale['devmodel']['choices']['templates'],
             value: 'templates'
           },{
-            name: _this.locale["devmodel"]["choices"]["fullstack"],
+            name: _this.locale['devmodel']['choices']['fullstack'],
             value: 'fullstack'
-          }]
-        },{
-          type: 'rawlist',
-          name: 'jsmodel',
-          message: _this.locale["jsmodel"]["message"],
-          choices: [
-          {
-            name: _this.locale["jsmodel"]["choices"]["no"],
-            value: 'useno'
-          },{
-            name: _this.locale["jsmodel"]["choices"]["amd"],
-            value: 'useamd'
-          },{
-            name: _this.locale["jsmodel"]["choices"]["cmd"],
-            value: 'usecmd'
           }]
         }
       ];

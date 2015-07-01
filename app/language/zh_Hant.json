@@ -24,13 +24,5 @@
       "templates"   : "模板模式",
       "fullstack"   : "全棧模式（Restful）"
     }
-  },
-  "jsmodel"         : {
-    "message"       : "請選擇此項目的JS模式",
-    "choices"       : {
-      "no"          : "常規",
-      "amd"         : "AMD",
-      "cmd"         : "CMD"
-    }
   }
 }

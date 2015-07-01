@@ -24,13 +24,5 @@
       "templates"   : "模板模式",
       "fullstack"   : "全栈模式（Restful）"
     }
-  },
-  "jsmodel"         : {
-    "message"       : "请选择此项目的JS模式",
-    "choices"       : {
-      "no"          : "常规",
-      "amd"         : "AMD",
-      "cmd"         : "CMD"
-    }
   }
 }
