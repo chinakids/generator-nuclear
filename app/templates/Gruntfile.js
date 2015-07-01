@@ -24,17 +24,15 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
-
+  <% if (useTemplates) {%>
+  //Get templates config
+  var templatesConfig = grunt.file.readJSON('templatesConfig.json');
+  <% } %>
   // Define the configuration for all the tasks
   grunt.initConfig({
 
     // Project settings
     config: config,
-
-    <% if (useTemplates){ %>
-    //templates config
-    templatesConfig: grunt.file.readJSON('templatesConfig.json'),
-    <% } %>
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
@@ -377,7 +375,7 @@ module.exports = function (grunt) {
       default: {
         options: {
           //edit templatesConfig.json
-          regex: this.templatesConfig
+          regex: templatesConfig
         },
         files: [{
           expand: true,
