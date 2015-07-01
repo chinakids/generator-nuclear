@@ -24,11 +24,17 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
     // Project settings
     config: config,
+
+    <% if (useTemplates){ %>
+    //templates config
+    templatesConfig: grunt.file.readJSON('templatesConfig.json'),
+    <% } %>
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
@@ -148,8 +154,9 @@ module.exports = function (grunt) {
         '!<%%= config.app %>/scripts/vendor/*',
         'test/spec/{,*/}*.js'
       ]
-    },<% if (testFramework === 'mocha') { %>
+    },
 
+    <% if (testFramework === 'mocha') { %>
     // Mocha testing framework configuration options
     mocha: {
       all: {
@@ -158,7 +165,9 @@ module.exports = function (grunt) {
           urls: ['http://<%%= connect.test.options.hostname %>:<%%= connect.test.options.port %>/index.html']
         }
       }
-    },<% } else if (testFramework === 'jasmine') { %>
+    },
+
+    <% } else if (testFramework === 'jasmine') { %>
 
     // Jasmine testing framework configuration options
     jasmine: {
@@ -167,8 +176,10 @@ module.exports = function (grunt) {
           specs: 'test/spec/{,*/}*.js'
         }
       }
-    },<% } %><% if (coffee) { %>
+    },
+    <% } %>
 
+    <% if (coffee) { %>
     // Compiles CoffeeScript to JavaScript
     coffee: {
       dist: {
@@ -189,8 +200,9 @@ module.exports = function (grunt) {
           ext: '.js'
         }]
       }
-    },<% } %><% if (includeLess) { %>
+    },<% } %>
 
+    <% if (includeLess) { %>
     // Compiles less to CSS and generates necessary files if requested
     less: {
       options: {
@@ -202,7 +214,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= config.app %>/less',
-          src: ['**/*.less'],
+          src: ['{,*/}*.less'],
           dest: '<%= config.app %>/styles',
           ext: '.min.css'
         }]
@@ -211,14 +223,15 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= config.app %>/less',
-          src: ['**/*.less'],
+          src: ['{,*/}*.less'],
           dest: '<%= config.app %>/styles',
           ext: '.min.css'
         }]
       }
     },
-    <% } %><% if (includeSass) { %>
+    <% } %>
 
+    <% if (includeSass) { %>
     // Compiles Sass to CSS and generates necessary files if requested
     sass: {
       options: {<% if (includeLibSass) { %>
@@ -245,7 +258,8 @@ module.exports = function (grunt) {
           ext: '.min.css'
         }]
       }
-    },<% } %>
+    },
+    <% } %>
 
     // Add vendor prefixed styles
     autoprefixer: {
@@ -358,6 +372,24 @@ module.exports = function (grunt) {
       }
     },
 
+    <% if (useTemplates) { %>
+    regexReplace: {
+      default: {
+        options: {
+          //edit templatesConfig.json
+          regex: templatesConfig
+        },
+        files: [{
+          expand: true,
+          cwd: '<%%= confg.app %>/',
+          src: '{,*/}*.html',
+          dest: 'templates/',
+          ext: '.html'
+        }]
+      }
+    },
+    <% } %>
+
     // By default, your `index.html`'s <!-- Usemin block --> will take care
     // of minification. These next options are pre-configured if you do not
     // wish to use the Usemin blocks.
@@ -414,8 +446,9 @@ module.exports = function (grunt) {
           dest: '<%%= config.dist %>'
         }<% } %>]
       }
-    },<% if (includeModernizr) { %>
+    },
 
+    <% if (includeModernizr) { %>
     // Generates a custom Modernizr build that includes only the tests you
     // reference in your app
     modernizr: {
@@ -431,7 +464,8 @@ module.exports = function (grunt) {
         },
         uglify: true
       }
-    },<% } %>
+    },
+    <% } %>
 
     // Run some tasks in parallel to speed up build process
     concurrent: {
@@ -505,7 +539,8 @@ module.exports = function (grunt) {
     'copy:dist',<% if (includeModernizr) { %>
     'modernizr',<% } %>
     'filerev',
-    'usemin',
+    'usemin',<% if (useTemplates) { %>
+    'regexReplace',<% } %>
     'htmlmin'
   ]);
 

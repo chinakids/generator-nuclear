@@ -120,18 +120,22 @@ module.exports = yeoman.generators.Base.extend({
         function hasDevmodel(dev) {
           return devmodel && devmodel.indexOf(dev) !== -1;
         };
+        //Common
         _this.appname = this._.slugify(answers.name);
         _this.description = answers.description;
-
+        //Css Precompiled
         _this.includeLess = hasCssmodel('includeLess');
         _this.includeSass = hasCssmodel('includeSass');
+        _this.includeLibSass = answers.libsass;
+        _this.includeRubySass = !answers.libsass;
+        //Module
         _this.includeCss = hasFeature('includeCss');
         _this.includeJquery = hasFeature('includeBootstrap');
         _this.includeBootstrap = hasFeature('includeJquery');
         _this.includeModernizr = hasFeature('includeModernizr');
-
-        _this.includeLibSass = answers.libsass;
-        _this.includeRubySass = !answers.libsass;
+        //project model
+        _this.useTemplates = hasDevmodel('templates');
+        _this.useFullstack = hasDevmodel('fullstack');
 
         done();
       }.bind(_this));
@@ -140,6 +144,10 @@ module.exports = yeoman.generators.Base.extend({
 
   gruntfile: function () {
     this.template('Gruntfile.js');
+  },
+
+  templatesJSON: function () {
+    this.template('templatesConfig.json');
   },
 
   packageJSON: function () {
