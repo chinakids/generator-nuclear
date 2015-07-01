@@ -468,8 +468,8 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up build process
     concurrent: {
       server: [<% if (coffee) {  %>
-        'coffee:dist',<% } %><% if (includeLess) { %>
-        'less:server',<% } %><% if (includeSass) { %>
+        'coffee:dist'<% } %><% if (coffee && !includeCss) {  %>,<% } %><% if (includeLess) { %>
+        'less:server'<% } %><% if (includeSass) { %>
         'sass:server'<% } %>
       ],
       test: [<% if (coffee) { %>
