@@ -107,16 +107,24 @@ module.exports = yeoman.generators.Base.extend({
       ];
 
       _this.prompt(prompts, function (answers) {
-        var features = answers.features;
+        var features = answers.feature,
+            cssmodel = answers.cssmodel,
+            devmodel = answers.devmodel;
 
         function hasFeature(feat) {
           return features && features.indexOf(feat) !== -1;
-        }
+        };
+        function hasCssmodel(css) {
+          return cssmodel && cssmodel.indexOf(feat) !== -1;
+        };
+        function hasDevmodel(dev) {
+          return devmodel && devmodel.indexOf(feat) !== -1;
+        };
         _this.appname = this._.slugify(answers.name);
         _this.description = answers.description;
 
-        _this.includeLess = hasFeature('includeLess');
-        _this.includeSass = hasFeature('includeSass');
+        _this.includeLess = hasCssmodel('includeLess');
+        _this.includeSass = hasCssmodel('includeSass');
         _this.includeCss = hasFeature('includeCss');
         _this.includeBootstrap = hasFeature('includeBootstrap');
         _this.includeModernizr = hasFeature('includeModernizr');
@@ -180,11 +188,11 @@ module.exports = yeoman.generators.Base.extend({
 
   mainStylesheet: function () {
     if(this.includeLess){
-      this.template(css, 'app/less/main.less');
+      this.template('main.less', 'app/less/main.less');
     }else if(this.includeSass){
-      this.template(css, 'app/scss/main.scss');
+      this.template('main.scss', 'app/scss/main.scss');
     }else{
-      this.template(css, 'app/style/main.css');
+      this.template('main.css', 'app/styles/main.css');
     }
   },
 
