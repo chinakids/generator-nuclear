@@ -115,10 +115,10 @@ module.exports = yeoman.generators.Base.extend({
           return features && features.indexOf(feat) !== -1;
         };
         function hasCssmodel(css) {
-          return cssmodel && cssmodel.indexOf(feat) !== -1;
+          return cssmodel && cssmodel.indexOf(css) !== -1;
         };
         function hasDevmodel(dev) {
-          return devmodel && devmodel.indexOf(feat) !== -1;
+          return devmodel && devmodel.indexOf(dev) !== -1;
         };
         _this.appname = this._.slugify(answers.name);
         _this.description = answers.description;
@@ -126,7 +126,8 @@ module.exports = yeoman.generators.Base.extend({
         _this.includeLess = hasCssmodel('includeLess');
         _this.includeSass = hasCssmodel('includeSass');
         _this.includeCss = hasFeature('includeCss');
-        _this.includeBootstrap = hasFeature('includeBootstrap');
+        _this.includeJquery = hasFeature('includeBootstrap');
+        _this.includeBootstrap = hasFeature('includeJquery');
         _this.includeModernizr = hasFeature('includeModernizr');
 
         _this.includeLibSass = answers.libsass;
@@ -233,7 +234,7 @@ module.exports = yeoman.generators.Base.extend({
       fileType: 'js',
       optimizedPath: 'scripts/main.js',
       sourceFileList: ['scripts/main.js'],
-      searchPath: ['app', '.tmp']
+      searchPath: ['app']
     });
   },
 
@@ -245,7 +246,7 @@ module.exports = yeoman.generators.Base.extend({
     this.write('app/index.html', this.indexFile);
 
     if (this.coffee) {
-      this.copy('main.coffee', 'app/scripts/main.coffee');
+      this.copy('main.coffee', 'app/coffee/main.coffee');
     } else {
       this.copy('main.js', 'app/scripts/main.js');
     }

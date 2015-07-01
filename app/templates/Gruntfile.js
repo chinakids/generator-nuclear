@@ -76,8 +76,8 @@ module.exports = function (grunt) {
         },
         files: [
           '<%%= config.app %>/{,*/}*.html',
-          '.tmp/styles/{,*/}*.css',<% if (coffee) { %>
-          '.tmp/scripts/{,*/}*.js',<% } %>
+          '<%%= config.app %>/styles/{,*/}*.css',<% if (coffee) { %>
+          '<%%= config.app %>/scripts/{,*/}*.js',<% } %>
           '<%%= config.app %>/images/{,*/}*'
         ]
       }
@@ -96,7 +96,6 @@ module.exports = function (grunt) {
         options: {
           middleware: function(connect) {
             return [
-              connect.static('.tmp'),
               connect().use('/bower_components', connect.static('./bower_components')),
               connect.static(config.app)
             ];
@@ -109,7 +108,6 @@ module.exports = function (grunt) {
           port: 9001,
           middleware: function(connect) {
             return [
-              connect.static('.tmp'),
               connect.static('test'),
               connect().use('/bower_components', connect.static('./bower_components')),
               connect.static(config.app)
@@ -131,13 +129,11 @@ module.exports = function (grunt) {
         files: [{
           dot: true,
           src: [
-            '.tmp',
             '<%%= config.dist %>/*',
             '!<%%= config.dist %>/.git*'
           ]
         }]
       },
-      server: '.tmp'
     },
 
     // Make sure code styles are up to par and there are no obvious mistakes
@@ -178,9 +174,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%%= config.app %>/scripts',
+          cwd: '<%%= config.app %>/coffee',
           src: '{,*/}*.{coffee,litcoffee,coffee.md}',
-          dest: '.tmp/scripts',
+          dest: '<%%= config.app %>/scripts',
           ext: '.js'
         }]
       },
@@ -189,7 +185,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: 'test/spec',
           src: '{,*/}*.{coffee,litcoffee,coffee.md}',
-          dest: '.tmp/spec',
+          dest: '<%%= config.test %>/spec',
           ext: '.js'
         }]
       }
@@ -205,18 +201,18 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%%= config.app %>/less',
-          src: ['*.{less}'],
-          dest: '<%%= config.app %>/styles',
+          cwd: '<%= config.app %>/less',
+          src: ['**/*.less'],
+          dest: '<%= config.app %>/styles',
           ext: '.min.css'
         }]
       },
       server: {
         files: [{
           expand: true,
-          cwd: '<%%= config.app %>/less',
-          src: ['*.{less}'],
-          dest: '<%%= config.app %>/styles',
+          cwd: '<%= config.app %>/less',
+          src: ['**/*.less'],
+          dest: '<%= config.app %>/styles',
           ext: '.min.css'
         }]
       }
