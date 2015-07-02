@@ -1,5 +1,5 @@
 # Generator-nuclear
-这是一个全能的脚手架，比官方更强大！装一个就够了~
+这是一个全能的脚手架，更适合中国~
 
 多语言支持，css双预编译器支持{less;sass}，默认引入normalize(css-reset)
 
