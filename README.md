@@ -1,7 +1,7 @@
 # Generator-nuclear
-这是一个全能的脚手架，更适合中国~
+一个基于 yeoman 的多语言构建工具
 
-多语言支持，css双预编译器支持{less;sass}，默认引入normalize(css-reset)
+css双预编译器支持{less;sass}，默认引入normalize(css-reset)
 
 [![npm version](https://badge.fury.io/js/engine.io.svg)](http://badge.fury.io/js/engine.io)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
@@ -46,12 +46,13 @@
 - 提交代码一定要说清楚修改哦~
 
 ### 6.下阶段开发计划
-- 重写官方的test单元
-- 可选多种开发环境（1.PC端的；2.移动端的）
-- 可选多种架构环境（1.基于angularjs的MVC；2.等）
-- jade 模板支持
+- 增加多种测试模块
+- 可选多种构建环境
+- jade 等多模板生成支持
 - gulp 脚本支持
-- js模式支持（amd&cmd）
+- 自动更新支持
+- js 模块化支持（将在模块化模式下放弃 bower 自动依赖）
+- 移除自动项目创建时的自动依赖（jquery,bootstarp），默认只依赖 normalize 相关 css 库（ 为了方便 js 模块化支持 ）
 - ~~考虑恢复sass支持，提供less&sass双预编译器支持~~（目前提供双编译器支持，以及不实用编译器选项）
 - ~~可选多种工作方式（1.前后端完全分离；2.配合后台的模板编写）~~（目前支持自动替换模板的资源基质路径）
 - ~~加入多语言支持~~  (目前支持中文简体、中文繁体、英文;根据运行平台语言自动选择)
