@@ -20,8 +20,9 @@ module.exports = function(grunt) {
 
   // Configurable paths
   var config = {
-    app: 'dev',
-    dist: 'dist'
+    dev: 'dev',
+    dist: 'dist',
+    templates: 'templates'
   };
 
   <% if (useTemplates) {%>
@@ -43,7 +44,7 @@ module.exports = function(grunt) {
         <% if (coffee) { %>
         coffee: {
           files: [
-            '<%%= config.app %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}'
+            '<%%= config.dev %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}'
           ],
           tasks: ['coffee:dist']
         },
@@ -53,7 +54,7 @@ module.exports = function(grunt) {
         },
         <% } else { %>
         js: {
-          files: ['<%%= config.app %>/scripts/{,*/}*.js'],
+          files: ['<%%= config.dev %>/scripts/{,*/}*.js'],
           tasks: ['jshint'],
           options: {
             livereload: '<%%= connect.options.livereload %>'
@@ -69,18 +70,18 @@ module.exports = function(grunt) {
         },
         <% if (includeLess) { %>
         less: {
-          files: ['<%%= config.app %>/less/{,*/}*.{less}'],
+          files: ['<%%= config.dev %>/less/{,*/}*.{less}'],
           tasks: ['less:server', 'autoprefixer']
         },
         <% } %>
         <% if (includeSass) { %>
         sass: {
-          files: ['<%%= config.app %>/scss/{,*/}*.{scss,sass}'],
+          files: ['<%%= config.dev %>/scss/{,*/}*.{scss,sass}'],
           tasks: ['sass:server', 'autoprefixer']
         },
         <% } %>
         styles: {
-          files: ['<%%= config.app %>/styles/{,*/}*.css'],
+          files: ['<%%= config.dev %>/styles/{,*/}*.css'],
           tasks: ['newer:copy:styles', 'autoprefixer']
         },
         livereload: {
@@ -88,10 +89,10 @@ module.exports = function(grunt) {
             livereload: '<%%= connect.options.livereload %>'
           },
           files: [
-            '<%%= config.app %>/{,*/}*.html',
-            '<%%= config.app %>/styles/{,*/}*.css', <% if (coffee) { %>
-            '<%%= config.app %>/scripts/{,*/}*.js', <% } %>
-            '<%%= config.app %>/images/{,*/}*'
+            '<%%= config.dev %>/{,*/}*.html',
+            '<%%= config.dev %>/styles/{,*/}*.css', <% if (coffee) { %>
+            '<%%= config.dev %>/scripts/{,*/}*.js', <% } %>
+            '<%%= config.dev %>/images/{,*/}*'
           ]
         }
       },
@@ -159,8 +160,8 @@ module.exports = function(grunt) {
         },
         all: [
           'Gruntfile.js',
-          '<%%= config.app %>/scripts/{,*/}*.js',
-          '!<%%= config.app %>/scripts/vendor/*',
+          '<%%= config.dev %>/scripts/{,*/}*.js',
+          '!<%%= config.dev %>/scripts/vendor/*',
           'test/spec/{,*/}*.js'
         ]
       },
@@ -196,9 +197,9 @@ module.exports = function(grunt) {
         dist: {
           files: [{
             expand: true,
-            cwd: '<%%= config.app %>/coffee',
+            cwd: '<%%= config.dev %>/coffee',
             src: '{,*/}*.{coffee,litcoffee,coffee.md}',
-            dest: '<%%= config.app %>/scripts',
+            dest: '<%%= config.dev %>/scripts',
             ext: '.js'
           }]
         },
@@ -257,18 +258,18 @@ module.exports = function(grunt) {
         dist: {
           files: [{
             expand: true,
-            cwd: '<%%= config.app %>/scss',
+            cwd: '<%%= config.dev %>/scss',
             src: ['*.{scss,sass}'],
-            dest: '<%%= config.app %>/styles',
+            dest: '<%%= config.dev %>/styles',
             ext: '.min.css'
           }]
         },
         server: {
           files: [{
             expand: true,
-            cwd: '<%%= config.app %>/scss',
+            cwd: '<%%= config.dev %>/scss',
             src: ['*.{scss,sass}'],
-            dest: '<%%= config.app %>/styles',
+            dest: '<%%= config.dev %>/styles',
             ext: '.min.css'
           }]
         }
@@ -294,7 +295,7 @@ module.exports = function(grunt) {
       wiredep: {
         app: {
           ignorePath: /^<%= config.app %>\/|\.\.\//,
-          src: ['<%%= config.app %>/index.html']
+          src: ['<%%= config.dev %>/index.html']
           <% if (includeBootstrap) { %>,
           <% if (includeSass) { %>
           exclude: [
@@ -306,7 +307,7 @@ module.exports = function(grunt) {
         }
         <% if (includeSass) { %>,
         sass: {
-          src: ['<%%= config.app %>/styles/{,*/}*.{scss,sass}'],
+          src: ['<%%= config.dev %>/styles/{,*/}*.{scss,sass}'],
           ignorePath: /(\.\.\/){1,2}bower_components\//
         }
         <% } %>
@@ -332,7 +333,7 @@ module.exports = function(grunt) {
         options: {
           dest: '<%%= config.dist %>'
         },
-        html: '<%%= config.app %>/index.html'
+        html: '<%%= config.dev %>/index.html'
       },
 
       // Performs rewrites based on rev and the useminPrepare configuration
@@ -353,7 +354,7 @@ module.exports = function(grunt) {
         dist: {
           files: [{
             expand: true,
-            cwd: '<%%= config.app %>/images',
+            cwd: '<%%= config.dev %>/images',
             src: '{,*/}*.{gif,jpeg,jpg,png}',
             dest: '<%%= config.dist %>/images'
           }]
@@ -364,7 +365,7 @@ module.exports = function(grunt) {
         dist: {
           files: [{
             expand: true,
-            cwd: '<%%= config.app %>/images',
+            cwd: '<%%= config.dev %>/images',
             src: '{,*/}*.svg',
             dest: '<%%= config.dist %>/images'
           }]
@@ -403,9 +404,9 @@ module.exports = function(grunt) {
           },
           files: [{
             expand: true,
-            cwd: '<%%= config.app %>/',
+            cwd: '<%%= config.dev %>/',
             src: '{,*/}*.html',
-            dest: 'templates/',
+            dest: '<%%= config.templates %>/',
             ext: '.html'
           }]
         }
@@ -420,7 +421,7 @@ module.exports = function(grunt) {
       //     files: {
       //       '<%%= config.dist %>/styles/main.css': [
       //         '.tmp/styles/{,*/}*.css',
-      //         '<%%= config.app %>/styles/{,*/}*.css'
+      //         '<%%= config.dev %>/styles/{,*/}*.css'
       //       ]
       //     }
       //   }
@@ -444,7 +445,7 @@ module.exports = function(grunt) {
           files: [{
               expand: true,
               dot: true,
-              cwd: '<%%= config.app %>',
+              cwd: '<%%= config.dev %>',
               dest: '<%%= config.dist %>',
               src: [
                 '*.{ico,png,txt}',
@@ -464,26 +465,26 @@ module.exports = function(grunt) {
             } %>
               ',
               src: '<% if (includeLess) { %> bower_components / bootstrap /
-                fonts
-                /*<%
-                            } else {
-                              %>fonts/*<%
-                            } %>',
-                          dest: '<%%= config.dist %>'
-                        }<% } %>]
-                      }
-                    },
+              fonts
+              /*<%
+                          } else {
+                            %>fonts/*<%
+                          } %>',
+                        dest: '<%%= config.dist %>'
+                      }<% } %>]
+                    }
+                  },
 
-                    <% if (includeModernizr) { %>
-                    // Generates a custom Modernizr build that includes only the tests you
-                    // reference in your app
-                    modernizr: {
-                      dist: {
-                        devFile: 'bower_components/modernizr/modernizr.js',
-                        outputFile: '<%%= config.dist %>/scripts/vendor/modernizr.js',
-                        files: {
-                          src: [
-                            '<%%= config.dist %>/scripts/{,*/
+                  <% if (includeModernizr) { %>
+                  // Generates a custom Modernizr build that includes only the tests you
+                  // reference in your app
+                  modernizr: {
+                    dist: {
+                      devFile: 'bower_components/modernizr/modernizr.js',
+                      outputFile: '<%%= config.dist %>/scripts/vendor/modernizr.js',
+                      files: {
+                        src: [
+                          '<%%= config.dist %>/scripts/{,*/
             } * .js ',
             '<%%= config.dist %>/styles/{,*/}*.css',
             '!<%%= config.dist %>/scripts/vendor/*'
