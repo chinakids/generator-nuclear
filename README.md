@@ -1,4 +1,4 @@
-# Generator-nuclear
+# Generator-nuclear[项目即将重启]
 一个基于 yeoman 的多语言构建工具
 
 css双预编译器支持{less;sass}，默认引入normalize(css-reset)
