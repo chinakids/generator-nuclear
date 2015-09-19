@@ -1,0 +1,28 @@
+{
+  "welcome"         : "这个脚手架包含基础HTML5模板,jQuery和Grunt脚本用来构建应用程序\n不完整语言包缺省部分显示为[中文]\n有使用问题请提交至https://github.com/chinakids/generator-nuclear/issues",
+  "name"            : "你希望这个项目的名字是?",
+  "description"     : "用一句话来描述你的这个项目:",
+  "cssmodel"        :{
+    "message"       : "请选择此项目CSS预编译器",
+    "choices"       : {
+      "less"        : "Less",
+      "sass"        : "Sass",
+      "css"         : "不使用预编译器"
+    }
+  },
+  "features"        : {
+    "message"       : "你还希望引入什么?",
+    "choices"       : {
+      "bootstrap"   : "Bootstrap(引入bs则会自动引入jq)",
+      "jquery"      : "JQuery(引入bs则会自动引入jq)",
+      "modernizr"   : "Modernizr"
+    }
+  },
+  "devmodel"        : {
+    "message"       : "请选择此项目的工作方式",
+    "choices"       : {
+      "templates"   : "模板模式",
+      "fullstack"   : "全栈模式（Restful）"
+    }
+  }
+}
