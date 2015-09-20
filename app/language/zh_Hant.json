@@ -1,28 +1,5 @@
 {
   "welcome"         : "這個腳手架包含基礎HTML5模板,jQuery和Grunt腳本用來構建應用程序",
   "name"            : "你希望這個項目的名字是?",
-  "description"     : "用一句話來描述你的這個項目:",
-  "cssmodel"        :{
-    "message"       : "請選擇此項目CSS預編譯器",
-    "choices"       : {
-      "less"        : "Less",
-      "sass"        : "Sass",
-      "css"         : "不使用預編譯器"
-    }
-  },
-  "features"        : {
-    "message"       : "你還希望引入什麼?",
-    "choices"       : {
-      "bootstrap"   : "Bootstrap(引入bs則會自動引入jq)",
-      "jquery"      : "JQuery(引入bs則會自動引入jq)",
-      "modernizr"   : "Modernizr"
-    }
-  },
-  "devmodel"        : {
-    "message"       : "請選擇此項目的工作方式",
-    "choices"       : {
-      "templates"   : "模板模式",
-      "fullstack"   : "全棧模式（Restful）"
-    }
-  }
+  "description"     : "用一句話來描述你的這個項目:"
 }
